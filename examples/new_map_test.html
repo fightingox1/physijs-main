@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="js/stats.js"></script>
 	<script type="text/javascript" src="js/simplex-noise.js"></script>
 	<script type="text/javascript" src="../physi.js"></script>
+	<script type="module" src="import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/controls/OrbitControls.js';"></script>
 	
 	<script type="text/javascript">
 	
@@ -19,7 +20,7 @@
 	Physijs.scripts.worker = '../physijs_worker.js';
 	Physijs.scripts.ammo = 'examples/js/ammo.js';
 	
-	var initScene, render,
+	var initScene, render, controls,
 		ground_material, box_material, 
 		renderer, render_stats, physics_stats, scene, ground, light, camera,
 			vehicle_body, vehicle, loader;
@@ -80,6 +81,8 @@
 			1000
 		);
 		scene.add( camera );
+		
+		controls = new OrbitControls( camera, renderer.domElement );
 		
 		// Light
 		light = new THREE.DirectionalLight( 0xFFFFFF );
@@ -165,7 +168,7 @@
 					map,
 					new THREE.MeshFaceMaterial( map_materials )
 				);
-				scence_mesh.position.y = 2;
+				scence_mesh.position.y = 0;
 				scence_mesh.castShadow = mesh.receiveShadow = true;
                 scene.add( scence_mesh );
         });
@@ -261,8 +264,7 @@
 	render = function() {
 		requestAnimationFrame( render );
 		if ( vehicle ) {
-			camera.position.copy( vehicle.mesh.position ).add( new THREE.Vector3( 40, 25, 40 ) );
-			camera.lookAt( vehicle.mesh.position );
+			controls.update();
 
 			light.target.position.copy( vehicle.mesh.position );
 			light.position.addVectors( light.target.position, new THREE.Vector3( 20, 20, -15 ) );
