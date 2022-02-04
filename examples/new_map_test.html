@@ -19,7 +19,7 @@
 	Physijs.scripts.worker = '../physijs_worker.js';
 	Physijs.scripts.ammo = 'examples/js/ammo.js';
 	
-	var initScene, render, controls,
+	var initScene, render,
 		ground_material, box_material, 
 		renderer, render_stats, physics_stats, scene, ground, light, camera,
 			vehicle_body, vehicle, loader;
@@ -167,7 +167,7 @@
 					map,
 					new THREE.MeshFaceMaterial( map_materials )
 				);
-				scence_mesh.position.y = 0;
+				scence_mesh.position.y = 2;
 				scence_mesh.castShadow = mesh.receiveShadow = true;
                 scene.add( scence_mesh );
         });
@@ -263,7 +263,8 @@
 	render = function() {
 		requestAnimationFrame( render );
 		if ( vehicle ) {
-			controls.update();
+			camera.position.copy( vehicle.mesh.position ).add( new THREE.Vector3( 40, 25, 40 ) );
+			camera.lookAt( vehicle.mesh.position );
 
 			light.target.position.copy( vehicle.mesh.position );
 			light.position.addVectors( light.target.position, new THREE.Vector3( 20, 20, -15 ) );
