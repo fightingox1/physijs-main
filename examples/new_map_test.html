@@ -272,12 +272,11 @@
 	render = function() {
 		requestAnimationFrame( render );
 		if ( vehicle ) {
-			camera.position.copy( vehicle.mesh.position ).add( new THREE.Vector3( 40, 25, 40 ) );
-			camera.lookAt( vehicle.mesh.position );
 
 			light.target.position.copy( vehicle.mesh.position );
 			light.position.addVectors( light.target.position, new THREE.Vector3( 20, 20, -15 ) );
 		}
+		controls.update()
 		renderer.render( scene, camera );
 		render_stats.update();
 	};
