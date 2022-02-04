@@ -11,8 +11,8 @@
 	<script type="text/javascript" src="js/simplex-noise.js"></script>
 	<script type="text/javascript" src="../physi.js"></script>
 	
-	<script type="text/javascript">
-	
+	<script type="module">
+	import { PointerLockControls } from "https://threejs.org/examples/jsm/controls/PointerLockControls.js";
 	'use strict';
 	
 	Physijs.scripts.worker = '../physijs_worker.js';
@@ -79,6 +79,8 @@
 			1000
 		);
 		scene.add( camera );
+		
+		const controls = new PointerLockControls( camera, document.body );
 		
 		// Light
 		light = new THREE.DirectionalLight( 0xFFFFFF );
@@ -213,6 +215,10 @@
 					steering: 0
 				};
 				document.addEventListener('keydown', function( ev ) {
+					if(ev.key == "1"){
+					controls.lock();
+					}
+					else{
 					switch ( ev.keyCode ) {
 						case 37: // left
 							input.direction = 1;
@@ -230,9 +236,14 @@
 							input.power = false;
 							break;
 					}
+					}
 				});
 				document.addEventListener('keyup', function( ev ) {
 					switch ( ev.keyCode ) {
+					if(ev.key == "1"){
+					controls.unlock();
+					}
+					else{
 						case 37: // left
 							input.direction = null;
 							break;
@@ -248,6 +259,7 @@
 						case 40: // back
 							input.power = null;
 							break;
+					}
 					}
 				});
 			});
