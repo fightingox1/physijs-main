@@ -6,13 +6,13 @@
 	
 	<link rel="stylesheet" type="text/css" href="css/styles.css" />
 	
-	<script type="text/javascript" src="js/three.min.js"></script>
-	<script type="text/javascript" src="js/stats.js"></script>
-	<script type="text/javascript" src="js/simplex-noise.js"></script>
-	<script type="text/javascript" src="../physi.js"></script>
-	
 	<script type="module">
+	import * as THREE from 'js/three.min.js';
+	import * as Stats from 'js/stats.js';
+	import * as SimplexNoise from 'js/simplex-noise.js';
+	import * as Physijs from '../physi.j';
 	import { PointerLockControls } from "https://threejs.org/examples/jsm/controls/PointerLockControls.js";
+	
 	'use strict';
 	
 	Physijs.scripts.worker = '../physijs_worker.js';
