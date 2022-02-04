@@ -239,11 +239,11 @@
 					}
 				});
 				document.addEventListener('keyup', function( ev ) {
-					switch ( ev.keyCode ) {
 					if(ev.key == "1"){
 					controls.unlock();
 					}
 					else{
+					switch ( ev.keyCode ) {
 						case 37: // left
 							input.direction = null;
 							break;
