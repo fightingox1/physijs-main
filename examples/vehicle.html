@@ -160,8 +160,8 @@
 
 		var json_loader = new THREE.JSONLoader();
 
-		json_loader.load( "models/mustang.js", function( car, car_materials ) {
-			json_loader.load( "models/mustang_wheel.js", function( wheel, wheel_materials ) {
+		json_loader.load( "models/car_model.js", function( car, car_materials ) {
+			json_loader.load( "models/wheels_model.js", function( wheel, wheel_materials ) {
 				var mesh = new Physijs.BoxMesh(
 					car,
 					new THREE.MeshFaceMaterial( car_materials )
